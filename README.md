@@ -2,7 +2,7 @@
 ## Install and Configure OpenEBS on Amazon Elastic Kubernetes Service
 ```
 eksctl create cluster \
- --name openebs-demo \
+ --name postgreEKS-demo \
  --version 1.14 \
  --nodegroup-name ng-workers \
  --node-type t3.medium \
