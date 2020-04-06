@@ -7,8 +7,6 @@ eksctl create cluster \
  --nodegroup-name ng-workers \
  --node-type t3.medium \
  --nodes 3 \
- --nodes-min 3 \
- --nodes-max 6 \
  --node-ami auto \
  --node-ami-family Ubuntu1804 \
  --set-kubeconfig-context=true
