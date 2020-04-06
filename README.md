@@ -24,7 +24,7 @@ aws ec2 describe-instances \
 ```
 aws ec2 create-volume \
     --size 20 \
-    --availability-zone us-east-1a \
+    --availability-zone us-east-1b
 ```
 ```
 aws ec2 attach-volume \
