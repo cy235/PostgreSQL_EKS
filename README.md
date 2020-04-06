@@ -25,10 +25,7 @@ aws ec2 create-volume \
     --availability-zone us-east-1b
 ```
 ```
-aws ec2 attach-volume \
-	--volume-id vol-???? \
-	--instance-id i-???? \
-	--device /dev/sdf
+aws ec2 attach-volume --volume-id vol-???? --instance-id i-???? --device /dev/sdf
 ```
 
 ## Deploy PostgreSQL on Kubernetes Running the OpenEBS Storage Engine
