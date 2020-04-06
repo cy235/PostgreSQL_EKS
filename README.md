@@ -22,7 +22,7 @@ aws ec2 describe-instances \
 ```
 aws ec2 create-volume \
     --size 20 \
-    --availability-zone us-east-1b
+    --availability-zone us-east-1?
 ```
 ```
 aws ec2 attach-volume --volume-id vol-???? --instance-id i-???? --device /dev/sdf
