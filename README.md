@@ -28,9 +28,7 @@ aws ec2 create-volume \
 aws ec2 attach-volume --volume-id vol-???? --instance-id i-???? --device /dev/sdf
 ```
 ```
-aws ec2 describe-instances \
-	--query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value,InstanceId,BlockDeviceMappings[*].Ebs.VolumeId]' \
-	--output text
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value,InstanceId,BlockDeviceMappings[*].Ebs.VolumeId]' --output text
 ```
 
 ## Deploy PostgreSQL on Kubernetes Running the OpenEBS Storage Engine
