@@ -11,7 +11,7 @@ eksctl create cluster \
  --nodes-max 6 \
  --node-ami auto \
  --node-ami-family Ubuntu1804 \
- --ssh-public-key=chen-yi-IAM.pem\
+ --ssh-public-key=chen-yi-IAM-keypair.pem\
  --set-kubeconfig-context=true
 ```
 ```
