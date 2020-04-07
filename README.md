@@ -28,5 +28,11 @@ aws ec2 attach-volume --volume-id vol-???? --instance-id i-???? --device /dev/sd
 ```
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value,InstanceId,BlockDeviceMappings[*].Ebs.VolumeId]' --output text
 ```
-
+```
+kubectl apply -f https://openebs.github.io/charts/openebs-operator-1.8.0.yaml
+```
+or
+```
+kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
+```
 ## Deploy PostgreSQL on Kubernetes Running the OpenEBS Storage Engine
