@@ -1,6 +1,10 @@
 # PostgreSQL_EKS
 ## Install and Configure OpenEBS on Amazon Elastic Kubernetes Service
 ```
+eksctl create cluster  --name postgreEKS  --version 1.14  --nodegroup-name ng-1  --node-type t2.micro  --nodes 3 --nodes-min 3 --nodes-max 6 --node-ami auto  --node-ami-family Ubuntu1804  --set-kubeconfig-context=true
+```
+or
+```
 eksctl create cluster  --name postgreEKS  --version 1.14  --nodegroup-name ng-1  --node-type t2.micro  --nodes 3 --nodes-min 3 --nodes-max 6 --node-ami auto  --node-ami-family Ubuntu1804  --ssh-public-key=postgre.cluster.eks.pub --set-kubeconfig-context=true
 ```
 or
