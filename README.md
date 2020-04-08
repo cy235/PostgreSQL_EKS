@@ -2,7 +2,7 @@
 In this project, we will deploy PostgreSQL on Amazon EKS using Kubernetes Persistent Volumes (PV) and Statefulset. And test the persistence of data volumes.
 
 ## Create PV
-We create a PV named `postgresql-pv`, the configuration file is [pg-pv.yaml].</br>
+We create a PV named `postgresql-pv`, the configuration file is [pg-pv.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-pv.yaml).</br>
 Execute:
 ```
 kubectl create -f pg-pv.yaml
