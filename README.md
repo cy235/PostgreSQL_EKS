@@ -53,9 +53,9 @@ $ kubectl apply -f pg-service.yaml
 
 $ kubectl get service -o wide
 
-NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE    SELECTOR
-kubernetes                  ClusterIP   10.96.0.1        <none>        443/TCP          12d    <none>
-postgresql-client-service   NodePort    10.96.41.96      <none>        5432:30432/TCP   1m     app=postgresql
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE    SELECTOR
+kubernetes                  ClusterIP      10.100.0.1       <none>                                                                   443/TCP          177m   <none>
+postgresql-client-service   NodePort       10.100.187.152   <none>                                                                   5432:30432/TCP   93m    app=postgresql
 ```
 
 ## Connect Database
@@ -68,7 +68,7 @@ or
 ```
 psql -U postgres -h localhost -p 30432
 ```
-Now we expose the IP of this deployment `postgresql-client-service`:
+Now we expose the IP of the deployment `postgresql-client-service` as `mypgservice`, which can be visited via a load balancer:
 ```
 $ kubectl get deployments
 NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
@@ -82,7 +82,7 @@ mypgservice                 LoadBalancer   10.100.8.2       aa6335e23793f11ea85b
 postgresql-client-service   NodePort       10.100.187.152   <none>                                                                   5432:30432/TCP   11m   app=postgresql
 
 ```
-2. connect the database from the outside of the cluster:
+We can connect the database from the outside of the cluster:
 ```
 psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com -p 5432
 ```
@@ -97,26 +97,37 @@ Type "help" for help.
 
 postgres=#
 ```
-Next, we will test the persistence pf data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.
+Next, we will test the persistence pf data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.</br>
+First we creat a database named 'pgtest'
 ```
-create database pgtest
+postgres=# create database pgtest;
+postgres=#\q
 ```
-connect the database
+Reconnect the database `pgtest` from outside of cluster
+
 ```
-$ psql -U postgres -h localhost -p 30432 pgtest
+$ psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com -p 5432 pgtest
 ```
-or
-```
-$ psql -U postgres -h 10.96.41.96 -p 5432 pgtest
-```
-Create a test table and input some data
+Create a table named `test` and input some data
 ```
 CREATE TABLE test(
    ID INT PRIMARY KEY     NOT NULL,
    NAME           TEXT    NOT NULL
 );
-
-insert into test (id, name) values (1, "tom");
+CREATE TABLE
+pgtest=# insert into test (id,name) values(1,'an wang');
+INSERT 0 1
+pgtest=# insert into test (id,name) values(2,'benjamin yi');
+INSERT 0 1
+pgtest=# insert into test (id,name) values(3,'chen yi');
+INSERT 0 1
+pgtest=# SELECT * FROM test;
+ id |    name     
+----+-------------
+  1 | an wang
+  2 | benjamin yi
+  3 | chen yi
+(3 rows)
 ```
 
 ## Delete the pod
