@@ -59,13 +59,32 @@ postgresql-client-service   NodePort    10.96.41.96      <none>        5432:3043
 ```
 
 ## Connect Database
-Here we use the psql client to connect database
+Here we use the psql client to connect database in two ways.
+Since the external IP is not available now, the first way to connect the database is from the inside of the cluster:
 ```
 $ psql -U postgres -h 10.96.41.96 -p 5432
 ```
 or
 ```
 psql -U postgres -h localhost -p 30432
+```
+Now we expose the IP of this deployment `postgresql-client-service`:
+```
+$ kubectl get deployments
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+postgresql-deployment   1/1     1            1           40m
+
+$ kubectl expose deployment postgresql-deployment --type=LoadBalancer --name=mypgservice
+$ kubectl get service -o wide
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE   SELECTOR
+kubernetes                  ClusterIP      10.100.0.1       <none>                                                                   443/TCP          96m   <none>
+mypgservice                 LoadBalancer   10.100.8.2       aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com   5432:32050/TCP   17s   app=postgresql
+postgresql-client-service   NodePort       10.100.187.152   <none>                                                                   5432:30432/TCP   11m   app=postgresql
+
+```
+2. connect the database from the outside of the cluster:
+```
+psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com -p 5432
 ```
 Now, we succefully connect PostgreSQL database
 
