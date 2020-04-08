@@ -32,6 +32,7 @@ $ kubectl get pvc
 NAME             STATUS   VOLUME          CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 postgresql-pvc   Bound    postgresql-pv   10Gi       RWO            manual         13s
 ```
+they are bounded with each other now.
 
 ## Create Deployment
 Now, we create a deployment, where PVC will connnect the existing PV. The configuration file is [pg-deployment.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-deployment.yaml), where the it defines a volume which mount to `/var/lib/postgresql/data` (because the data will be stored in this path when PostgreSQL container executing initdb which initializes the database cluster's default locale and character set encoding).</br>
