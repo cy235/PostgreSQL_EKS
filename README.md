@@ -148,7 +148,7 @@ postgresql-deployment-68b8fc59db-zqqpr   1/1     Running   0          15s
 Now, we reconnect the database, and see whether the previous table and the input data exist or not 
 ```
 $ psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com -p 5432 pgtest -c "SELECT * FROM test"
-
+Password for user postgres:
  id |    name     
 ----+-------------
   1 | an wang
