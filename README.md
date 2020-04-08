@@ -20,6 +20,7 @@ Then, we can check the created PV and PVC in the following:
 $ kubectl get pv
 NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE
 postgresql-pv   10Gi       RWO            Retain           Bound    default/postgresql-pvc   manual                  20s
+
 $ kubectl get pvc
 NAME             STATUS   VOLUME          CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 postgresql-pvc   Bound    postgresql-pv   10Gi       RWO            manual         13s
