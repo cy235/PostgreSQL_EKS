@@ -63,7 +63,7 @@ postgresql-client-service   NodePort       10.100.187.152   <none>              
 Here we use the psql client to connect database in two ways.
 Since the external IP is not available now, the first way to connect the database is from the inside of the cluster:
 ```
-$ psql -U postgres -h 10.96.41.96 -p 5432
+$ psql -U postgres -h 10.100.187.152 -p 5432
 ```
 or
 ```
