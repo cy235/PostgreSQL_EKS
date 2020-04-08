@@ -9,7 +9,7 @@ kubectl create -f pg-pv.yaml
 ```
 
 ## Create Persistent Volume Claim (PVC)
-We create a PVC named `postgresql-pvc`, the configuration file is [pg-pvc.yaml].</br>
+We create a PVC named `postgresql-pvc`, the configuration file is [pg-pvc.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-pvc.yaml).</br>
 Execute:
 ```
 kubectl create -f pg-pvc.yaml
@@ -26,7 +26,7 @@ postgresql-pvc   Bound    postgresql-pv   10Gi       RWO            manual      
 ```
 
 ## Create deployment
-Now, we create a deployment, where PVC will connnect the existing PV. The configuration file is [pg-deployment.yaml], where the it defines a volume which mount to /var/lib/postgresql/data (because the data will be stored in this path when PostgreSQL container executing initdb which initializes the database cluster's default locale and character set encoding).</br>
+Now, we create a deployment, where PVC will connnect the existing PV. The configuration file is [pg-deployment.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-deployment.yaml), where the it defines a volume which mount to `/var/lib/postgresql/data` (because the data will be stored in this path when PostgreSQL container executing initdb which initializes the database cluster's default locale and character set encoding).</br>
 Then create the deployment in the following:
 ```
 kubectl create -f pg-deployment.yaml
@@ -45,7 +45,7 @@ postgresql-deployment-7cfb6c95db-5r2v8   1/1     Running   0          1m
 
 ## Create Service
 In order to access deployment of container, we need to expose the port of the service. Here we set this nodePort as 30432.
-We create this service as `postgresql-client-service`, the configuration file is [pg-service.yaml].</br>
+We create this service as `postgresql-client-service`, the configuration file is [pg-service.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-service.yaml).</br>
 We create the service:
 
 ```
