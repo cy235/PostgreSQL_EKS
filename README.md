@@ -138,7 +138,7 @@ pgtest=# SELECT * FROM test;
 (3 rows)
 ```
 
-## Delete the pod
+## Verify the Volume Persistence
 In the following, we delete the pod created during the deployment
 ```
 kubectl delete pod/postgresql-deployment-68b8fc59db-ln5zb
