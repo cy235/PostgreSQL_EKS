@@ -60,7 +60,7 @@ postgresql-client-service   NodePort       10.100.187.152   <none>              
 ```
 
 ## Connect Database
-Here we use the psql client to connect database in two ways. The istallation of psql can be referred to [Installing the PostgreSQL Client](https://www.ibm.com/cloud/blog/new-builders/postgresql-tips-installing-the-postgresql-client).
+Before we move on, we need [installing the PostgreSQL client](https://www.ibm.com/cloud/blog/new-builders/postgresql-tips-installing-the-postgresql-client), i.e., `psql` client. We use the `psql` client to connect database in two ways.
 Since the external IP is not available now, the first way to connect the database is from the inside of the cluster:
 ```
 $ psql -U postgres -h 10.100.187.152 -p 5432
