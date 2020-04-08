@@ -99,12 +99,12 @@ Type "help" for help.
 postgres=#
 ```
 Next, we will test the persistence pf data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.</br>
-First we creat a database named 'pgtest'
+First we creat a database named `pgtest` and quit.
 ```
 postgres=# create database pgtest;
 postgres=#\q
 ```
-Reconnect the database `pgtest` from outside of cluster
+Then reconnect the database `pgtest` from outside of cluster.
 
 ```
 $ psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209.us-east-1.elb.amazonaws.com -p 5432 pgtest
@@ -134,8 +134,8 @@ pgtest=# SELECT * FROM test;
 ## Delete the pod
 In the following, we delete the pod created during the deployment
 ```
-kubectl delete pod/postgresql-deployment-7cfb6c95db-5r2v8
-pod "postgresql-deployment-7cfb6c95db-5r2v8" deleted
+kubectl delete pod/postgresql-deployment-68b8fc59db-ln5zb
+pod "postgresql-deployment-68b8fc59db-ln5zb" deleted
 ```
 
 Now, we can observe that a new pg pod is created
@@ -143,16 +143,18 @@ Now, we can observe that a new pg pod is created
 kubectl get pods
 
 NAME                                     READY   STATUS    RESTARTS   AGE
-postgresql-deployment-7cfb6c95db-hd8ks   1/1     Running   0          13s
+postgresql-deployment-68b8fc59db-zqqpr   1/1     Running   0          15s
 ```
 Now, we reconnect the database, and see whether the previous table and the input data exist or not 
 ```
-$ ./psql -U postgres -h localhost -p 30432 pgtest -c "select * from test"
+$ ./psql -U postgres -h aa6335e23793f11ea85bf16ac812bad9-431391209 -p 5432 pgtest -c "SELECT * FROM test"
 
- id | name
-----+------
-  1 | tom
-(1 row)
+ id |    name     
+----+-------------
+  1 | an wang
+  2 | benjamin yi
+  3 | chen yi
+(3 rows)
 ```
 
 As expected, even if the pod is deleted, Kubernetes is able to recover the data via persistent volumes.
