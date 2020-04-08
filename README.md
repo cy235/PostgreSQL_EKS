@@ -26,7 +26,7 @@ NAME             STATUS   VOLUME          CAPACITY   ACCESS MODES   STORAGECLASS
 postgresql-pvc   Bound    postgresql-pv   10Gi       RWO            manual         13s
 ```
 
-## Create deployment
+## Create Deployment
 Now, we create a deployment, where PVC will connnect the existing PV. The configuration file is [pg-deployment.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-deployment.yaml), where the it defines a volume which mount to `/var/lib/postgresql/data` (because the data will be stored in this path when PostgreSQL container executing initdb which initializes the database cluster's default locale and character set encoding).</br>
 Then create the deployment in the following:
 ```
@@ -98,7 +98,7 @@ Type "help" for help.
 
 postgres=#
 ```
-Next, we will test the persistence pf data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.</br>
+Next, we will test the persistence of data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.</br>
 First we creat a database named `pgtest` and quit.
 ```
 postgres=# create database pgtest;
