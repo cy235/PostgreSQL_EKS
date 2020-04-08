@@ -1,9 +1,13 @@
 # Deploy PostgreSQL on Amazon EKS
-In this project, we will deploy PostgreSQL on Amazon EKS using Kubernetes Persistent Volumes (PV) and Statefulset. And test the persistence of data volumes. At first, we create a Kubernetes cluster in Amazon EKS.
+In this project, we will deploy PostgreSQL on Amazon EKS using Kubernetes Persistent Volumes (PV) and Statefulset. And test the persistence of data volumes. 
+
+## Create a Kubernetes Cluster
+At first, we create a Kubernetes cluster in Amazon EKS.
 ```
 eksctl create cluster  --name postgreEKS  --version 1.14  --nodegroup-name ng-1  --node-type t2.micro  --nodes 3 --nodes-min 3 --nodes-max 6 --node-ami auto  --node-ami-family Ubuntu1804  --set-kubeconfig-context=true
 ```
-You can also refer to my repo []() for creating Kubernetes cluster.
+You can also refer to my repo [CICD_ML_AWS_K8S](https://github.com/cy235/CICD_ML_AWS_K8S) for creating a Kubernetes cluster.
+
 ## Create PV
 We create a PV named `postgresql-pv`, the configuration file is [pg-pv.yaml](https://github.com/cy235/PostgreSQL_EKS/blob/master/pg-pv.yaml).</br>
 Execute:
