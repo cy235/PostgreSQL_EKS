@@ -101,7 +101,7 @@ postgres=#
 Next, we will test the persistence of data volumes. We first create a new database and a table, and input some data, then we delete the pod and see whether the new pod has the previous input data.</br>
 First we creat a database named `pgtest` and quit.
 ```
-postgres=# create database pgtest;
+postgres=# CREATE DATABASE pgtest;
 postgres=#\q
 ```
 Then reconnect the database `pgtest` from outside of cluster.
