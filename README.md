@@ -41,7 +41,7 @@ Now the pod will also be created
 $ kubectl get pods
 
 NAME                                     READY   STATUS    RESTARTS   AGE
-postgresql-deployment-7cfb6c95db-5r2v8   1/1     Running   0          1m
+postgresql-deployment-68b8fc59db-ln5zb   1/1     Running   0          124m
 ```
 
 ## Create Service
@@ -54,9 +54,9 @@ $ kubectl apply -f pg-service.yaml
 
 $ kubectl get service -o wide
 
-NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)          AGE    SELECTOR
-kubernetes                  ClusterIP      10.100.0.1       <none>                                                                   443/TCP          177m   <none>
-postgresql-client-service   NodePort       10.100.187.152   <none>                                                                   5432:30432/TCP   93m    app=postgresql
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP         PORT(S)          AGE    SELECTOR
+kubernetes                  ClusterIP      10.100.0.1       <none>              443/TCP          177m   <none>
+postgresql-client-service   NodePort       10.100.187.152   <none>               5432:30432/TCP   93m    app=postgresql
 ```
 
 ## Connect Database
